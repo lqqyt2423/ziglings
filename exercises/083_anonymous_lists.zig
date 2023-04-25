@@ -18,7 +18,7 @@ pub fn main() void {
     //
     // Don't change this part:
     //
-    //     = .{'h', 'e', 'l', 'l', 'o'};
+    //     = .{ 'h', 'e', 'l', 'l', 'o' };
     //
     const hello: [5]u8 = .{ 'h', 'e', 'l', 'l', 'o' };
     print("I say {s}!\n", .{hello});

@@ -38,30 +38,23 @@ Install a [development build](https://ziglang.org/download/) of the Zig compiler
 
 Verify the installation and build number of `zig` like so:
 
-```bash
+```
 $ zig version
-0.11.0-dev.2157+xxxxxxxxx
+0.11.0-dev.2560+xxxxxxxxx
 ```
 
 Clone this repository with Git:
 
-```bash
+```
 $ git clone https://github.com/ratfactor/ziglings
 $ cd ziglings
 ```
 
-Then run `zig build 1` and follow the instructions to begin!
+Then run `zig build` and follow the instructions to begin!
 
-```bash
-$ zig build 1
 ```
-## :warning: Attention 
-Due to Zig's new build system, exercises can currently only be run manually with their number!
-
-```bash
-$ zig build xy
+$ zig build
 ```
-We hope to be able to offer this again soon in the automatic way.
 
 ## A Note About Versions
 
@@ -87,7 +80,8 @@ about input:
 
 ### Version Changes
 
-Version-0.11.0-dev.2157+xxxxxxxxx
+Version-0.11.0-dev.2560+602029bb2
+* *2023-04-07* zig 0.11.0-dev.2401 - fixes of the new build system - see [#212](https://github.com/ratfactor/ziglings/pull/212)
 * *2023-02-21* zig 0.11.0-dev.2157 - changes in `build system` - new: parallel processing of the build steps
 * *2023-02-21* zig 0.11.0-dev.1711 - changes in `for loops` - new: Multi-Object For-Loops + Struct-of-Arrays
 * *2023-02-12* zig 0.11.0-dev.1638 - changes in `std.Build` cache_root now returns a directory struct
@@ -108,38 +102,61 @@ Version-0.11.0-dev.2157+xxxxxxxxx
 It can be handy to check just a single exercise or _start_ from a single
 exercise:
 
-```bash
-zig build 19
-zig build 19_start
+```
+zig build -Dn=19
+zig build -Dn=19 start
 ```
 
 You can also run without checking for correctness:
 
-```bash
-zig build 19_test
+```
+zig build -Dn=19 test
 ```
 
 Or skip the build system entirely and interact directly with the compiler
 if you're into that sort of thing:
 
-```bash
+```
 zig run exercises/001_hello.zig
 ```
 
 Calling all wizards: To prepare an executable for debugging, install it
 to zig-cache/bin with:
 
-```bash
-zig build 19_install
+```
+zig build -Dn=19 install
+```
+
+To get a list of all possible options, run:
+
+```
+zig build -Dn=19 -l
+
+  install                      Install 019_functions2.zig to prefix path
+  uninstall                    Uninstall 019_functions2.zig from prefix path
+  test                         Run 019_functions2.zig without checking output
+  ...
 ```
 
 ## What's Covered
 
-I've decide to limit Ziglings to the core language and not
-attempt coverage of the Standard Library. Perhaps you can change
-my mind?
+The primary goal for Ziglings is to cover the core Zig language.
 
-Core Language
+It would be nice to cover the Standard Library as well, but this
+is currently challenging because the stdlib is evolving even
+faster than the core language (and that's saying something!).
+Not only would stdlib coverage change very rapidly, some exercises might even cease to be relevant entirely.
+
+Having said that, there are some stdlib features that are probably here
+to stay or are so important to understand that they are worth the
+extra effort to keep current.
+
+Conspicuously absent from Ziglings are a lot of string
+manipulation exercises. This is because Zig itself largely avoids
+dealing with strings. Hopefully there will be an obvious way to
+address this in the future. The Ziglings crew loves strings!
+
+Zig Core Language
 
 * [x] Hello world (main needs to be public)
 * [x] Importing standard library
@@ -171,10 +188,14 @@ Core Language
 * [x] Sentinel termination
 * [x] Quoted identifiers @""
 * [x] Anonymous structs/tuples/lists
-* [ ] Async <--- IN PROGRESS!
+* [ ] Async <--- ironically awaiting upstream Zig updates
 * [X] Interfaces
+* [X] Bit manipulation
 * [X] Working with C
-* [ ] String formatting
+
+Zig Standard Library
+
+* [X] String formatting
 
 ## Contributing
 
@@ -183,8 +204,8 @@ the learning resource I wished for. There will be tons of room for improvement:
 
 * Wording of explanations
 * Idiomatic usage of Zig
-* Maybe additional exercises?
+* Additional exercises
 
-Please see CONTRIBUTING.md in this repo for the full details.
+Please see [CONTRIBUTING](https://github.com/ratfactor/ziglings/blob/main/CONTRIBUTING.md) in this repo for the full details.
 
 
